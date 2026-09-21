@@ -74,7 +74,7 @@ close = pd.read_sql_query(
 ### Q2a: Which stock had the highest average intraday volatility?
 ```python
 avg_volatility = pd.read_sql_query(
-    "SELECT Name, AVG((high - low) / low * 100) AS avg_intraday_volatility FROM stock_prices GROUP BY Name ORDER BY avg_intraday_volatility DESC LIMIT 5",
+    "SELECT Name, AVG((high - low) / low * 100) AS avg_intraday_volatility FROM stock_prices GROUP BY Name ORDER BY avg_intraday_volatility DESC LIMIT 1",
     conn
 )
 ```
@@ -192,6 +192,32 @@ price_range = pd.read_sql_query(
 **Verified:** MIN(close) = $12.13, MAX(close) = $246.85
 
 **Insight:** NVIDIA grew nearly 20x over the 5-year period (2013-2018), driven by GPU demand for gaming and early cryptocurrency mining — well before the AI boom that later propelled it further. This is the strongest organic growth story in the dataset.
+
+---
+
+### Export: Summary table for Excel / Power BI dashboard
+```python
+summary_report = pd.read_sql_query(""" with cte as(
+                                   select name, close, date,
+                                   first_value(close) over (partition by name order by date asc) as first_close,
+                                   first_value(close) over (partition by name order by date desc) as last_close,
+                                   avg(close) over (partition by name) as Avg_close,
+                                   avg((high - low) / low * 100) over (partition by name) as Avg_Volatility 
+                                   from stock_prices
+                                   )
+                                   select distinct name, Avg_close, Avg_Volatility, first_close, last_close, 
+                                   round((last_close - first_close) / first_close * 100 , 2) as Growth_pct
+                                   from cte
+                                   order by Growth_pct desc
+                                   """, 
+                                   conn
+                                   )
+with pd.ExcelWriter("stock_analysis_dashboard.xlsx") as writer:
+    summary_report.to_excel(writer, sheet_name='Summary', index=False)
+    df.to_excel(writer, sheet_name='DailyData', index=False)
+```
+
+**Purpose:** Builds a per-stock `Summary` sheet (avg close, avg volatility, first/last close, growth %) computed via SQL window functions, alongside the full `DailyData` sheet — exported to `stock_analysis_dashboard.xlsx` as the working file for the Excel dashboard and the source connected to Power BI.
 
 ---
 
