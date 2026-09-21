@@ -83,4 +83,4 @@ high_voli = pd.read_sql_query("""
                               )
 print("The highest months of volatility across the dataset:\n",high_voli)
 
-export = df.to_csv(r"C:\Users\troos\OneDrive\Documents\Projects\Stocks Analysis\stocks_analysis.csv")
+export = df.to_csv(r"stocks_analysis.csv")
