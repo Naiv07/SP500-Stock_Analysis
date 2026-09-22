@@ -1,6 +1,6 @@
 # 📈 S&P 500 Stock Analysis
 
-![Power BI Dashboard](images/powerbi_dashboard.png)
+![Power BI Dashboard](Screenshot%202026-09-22%20224046.png)
 
 # Objective
 
