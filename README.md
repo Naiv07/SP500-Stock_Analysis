@@ -94,7 +94,7 @@ Built a single-stock, year-by-year dashboard with:
 - First and last closing value per year, found via `INDEX/MATCH` against the min/max trading date for that year (not simply the year's lowest/highest price — see Data Cleaning above)
 - Built on top of a `Summary` sheet and full `DailyData` sheet exported directly from the SQL analysis, linked via Power Pivot's Data Model for combined reporting
 
-![Excel Dashboard](images/excel_dashboard.png)
+![Excel Dashboard](Screenshot%202026-09-22%20223917.png)
 
 ## Power BI Dashboard
 
