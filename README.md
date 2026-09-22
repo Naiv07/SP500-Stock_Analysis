@@ -115,7 +115,7 @@ Rebuilt the analysis as a proper star schema rather than importing the frozen Ex
 
 The Top 5/Bottom 5 charts and trend line are fully interactive — selecting a stock and year re-ranks and re-filters every visual on the page:
 
-![Power BI Dashboard — filtered to GOOGL, 2013](images/powerbi_dashboard_filtered.png)
+![Power BI Dashboard — filtered to GOOGL, 2013](Screenshot%202026-09-22%20224430.png)
 
 **Key visual insight:** NVDA is the standout outlier in the risk/return scatter — high `Growth %` (1749.64%) achieved without correspondingly extreme `Avg Volatility` — visually confirming the same finding reached independently through the SQL correlation analysis (r ≈ 0.08).
 
