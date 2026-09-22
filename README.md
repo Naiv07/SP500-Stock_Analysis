@@ -111,7 +111,7 @@ Rebuilt the analysis as a proper star schema rather than importing the frozen Ex
 - Price trend line and volume trend, both responsive to the stock slicer
 - Stock name and year slicers
 
-![Power BI Dashboard — default view](images/powerbi_dashboard.png)
+![Power BI Dashboard — default view](Screenshot%202026-09-22%20230037.png)
 
 The Top 5/Bottom 5 charts and trend line are fully interactive — selecting a stock and year re-ranks and re-filters every visual on the page:
 
